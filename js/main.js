@@ -11,10 +11,21 @@ if (!PIXI.utils.isWebGLSupported()) {
 PIXI.utils.sayHello(type); // Pixi.js 4.5.3 - ✰ WebGL ✰      http://www.pixijs.com/    ♥♥♥
 
 // Pixiアプリケーションを作成する
+/*
 let app = new PIXI.Application({
   width: 256,
   height: 256
 });
+*/
 
 // Pixiが自動的に作成したcanvasをHTMLドキュメントに追加する
 document.body.appendChild(app.view);
+
+// 横幅・高さ以外にも様々なオプション・オブジェクトがある
+let app = new PIXI.Application({
+  width: 256, // default: 800
+  height: 256, // default: 600
+  antialias: true, // default: false、ターゲット（プラットフォーム）により使えないので注意
+  transparent: false, // default: false、キャンバスの背景を透明にする
+  resolution: 1 // default: 1、レティナ対応？通常殆ど1でOK
+});
