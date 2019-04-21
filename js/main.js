@@ -22,13 +22,13 @@ let app = new PIXI.Application({
 // let app = new PIXI.Application({
 
 // エイリアスの使用
-let Application = new PIXI.Application;
+let Application = PIXI.Application;
 let loader = PIXI.loader;
 let resources = PIXI.loader.resources;
 let Sprite = PIXI.Sprite;
 
 
-let app = Application({
+let app = new Application({
   width: 512, // default: 800
   height: 512, // default: 600
   antialias: true, // default: false、ターゲット（プラットフォーム）により使えないので注意
@@ -48,7 +48,7 @@ let texture = TextureCache["images/cat.png"]
 
 // let sprite = new PIXI.Sprite(texture);
 
-// 画像をロードし、完了したらsetup()をじっこうする
+// 画像をロードし、完了したらsetup()を実行する
 // PIXI.loader.add("images/cat.png").load(setup);
 
 // エイリアスの使用
