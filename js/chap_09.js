@@ -4,25 +4,24 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 let setPixi = function() {
-  // pixiの表示タイプを指定
+ 
   let type = "WebGL";
 
   if (!PIXI.utils.isWebGLSupported()) {
     type = "canvas";
   }
 
-  // エイリアスの使用
   let Application = PIXI.Application;
   let loader = PIXI.loader;
   let resources = PIXI.loader.resources;
   let Sprite = PIXI.Sprite;
 
   let app = new Application({
-    width: 320, // default: 800
-    height: 120, // default: 600
-    antialias: true, // default: false、ターゲット（プラットフォーム）により使えないので注意
-    transparent: false, // default: false、キャンバスの背景を透明にする
-    resolution: 1 // default: 1、レティナ対応？通常殆ど1でOK
+    width: 320,
+    height: 240,
+    antialias: true,
+    transparent: false,
+    resolution: 1
   });
 
   // Pixiが自動的に作成したcanvasをHTMLドキュメントに追加する
@@ -56,4 +55,19 @@ let setPixi = function() {
     // より簡単に効率的に削除する
     // cat.visible = false;
   }
+
+  let canvas = document.getElementById("myCanvas")
+  let ctx = canvas.getContext("2d");
+  ctx.beginPath();
+  ctx.fillStyle = 'rgb(192, 255, 192)';
+  ctx.arc(80, 40, 30, 0, Math.PI*2, false);
+  ctx.fill();
+
+  // 既存のキャンバス要素からテクスチャを作成する。
+  let base2 = new PIXI.BaseTexture.fromCanvas(myCanvas);
+  let texture2 = new PIXI.Texture(base2);
+  let circle = new PIXI.Sprite(texture2);
+  app.stage.addChild(circle);
+  circle.x = 10;
+  circle.y = 100;
 };
