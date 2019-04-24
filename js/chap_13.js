@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-  console.log("DOM構築完了");
   setPixi();
 });
 
@@ -45,8 +44,8 @@ let setPixi = function() {
     // テクスチャからスプライトを作成する
     let bird = new Sprite(texture);
 
-    bird.x = 100;
-    bird.y = 100;
+    bird.x = 75;
+    bird.y = 75;
 
     app.stage.addChild(bird);
 
