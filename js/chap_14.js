@@ -27,4 +27,30 @@ let setPixi = function() {
 
   app.renderer.backgroundColor = 0x00000;
 
+  // テクスチャアトラスのロード
+  loader.add("images/atras.json").load(setup);
+
+  function setup() {
+
+    // テクスチャーからタイルセットのスプライトを作る
+    let texture = TextureCache["images/animals.png"];
+
+    // テクスチャから、抽出したい部分画像の位置とサイズを定義する
+    // 矩形オブジェクトを作成します（ `Rectangle`は` PIXI.Rectangle`のエイリアスです）
+    let rectangle = new Rectangle(100, 0, 100, 100);
+
+    // その長方形の断面を使用するようにテクスチャに伝えます
+    texture.frame = rectangle;
+
+    // テクスチャからスプライトを作成する
+    let bird = new Sprite(texture);
+
+    bird.x = 75;
+    bird.y = 75;
+
+    app.stage.addChild(bird);
+
+    // app.render.render(app.stage);
+  }
+
 };
