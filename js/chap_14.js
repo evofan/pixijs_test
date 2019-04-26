@@ -30,27 +30,44 @@ let setPixi = function() {
   // テクスチャアトラスのロード
   loader.add("images/atras.json").load(setup);
 
-  function setup() {
 
-    // テクスチャーからタイルセットのスプライトを作る
-    let texture = TextureCache["images/animals.png"];
 
-    // テクスチャから、抽出したい部分画像の位置とサイズを定義する
-    // 矩形オブジェクトを作成します（ `Rectangle`は` PIXI.Rectangle`のエイリアスです）
-    let rectangle = new Rectangle(100, 0, 100, 100);
+let bicycle, explorer, treasure, id;
 
-    // その長方形の断面を使用するようにテクスチャに伝えます
-    texture.frame = rectangle;
+function setup() {
 
-    // テクスチャからスプライトを作成する
-    let bird = new Sprite(texture);
+  // テクスチャアトラス枠からスプライトを作る方法は3つある
 
-    bird.x = 75;
-    bird.y = 75;
+  // （１）TextureCacheにアクセス
+  let bicycleTexture = TextureCache["pic_jitensya.png"];
+  bicycle = new Sprite(bicycleTexture);
+  app.stage.addChild(bicycle);
 
-    app.stage.addChild(bird);
+  
+/*
+  //2. Access the texture using through the loader's `resources`:
+  explorer = new Sprite(
+    resources["images/treasureHunter.json"].textures["explorer.png"]
+  );
+  explorer.x = 68;
 
-    // app.render.render(app.stage);
+  //Center the explorer vertically
+  explorer.y = app.stage.height / 2 - explorer.height / 2;
+  app.stage.addChild(explorer);
+
+  //3. Create an optional alias called `id` for all the texture atlas 
+  //frame id textures.
+  id = PIXI.loader.resources["images/treasureHunter.json"].textures; 
+  
+  //Make the treasure box using the alias
+  treasure = new Sprite(id["treasure.png"]);
+  app.stage.addChild(treasure);
+
+  //Position the treasure next to the right edge of the canvas
+  treasure.x = app.stage.width - treasure.width - 48;
+  treasure.y = app.stage.height / 2 - treasure.height / 2;
+  app.stage.addChild(treasure);
+  */
   }
 
 };
