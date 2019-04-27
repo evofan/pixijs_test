@@ -13,7 +13,7 @@ let setPixi = function() {
   let loader = PIXI.loader;
   let Sprite = PIXI.Sprite;
 
-  let Rectangle = PIXI.Rectangle;
+  let resources = PIXI.loader.resources;
   let TextureCache = PIXI.utils.TextureCache;
 
   let app = new Application({
@@ -30,44 +30,30 @@ let setPixi = function() {
   // テクスチャアトラスのロード
   loader.add("images/atras.json").load(setup);
 
+  let bicycle, car, airplane, id;
 
+  function setup() {
+    // テクスチャアトラス枠からスプライトを作る方法は3つある
 
-let bicycle, explorer, treasure, id;
+    // （１）TextureCacheにアクセス
+    let bicycleTexture = TextureCache["pic_bicycle.png"];
+    bicycle = new Sprite(bicycleTexture);
+    app.stage.addChild(bicycle);
 
-function setup() {
+    //（２）loaderのresourcesを使ってテクスチャにアクセスする
+    car = new Sprite(resources["images/atras.json"].textures["pic_car.png"]);
+    car.x = 100;
+    app.stage.addChild(car);
 
-  // テクスチャアトラス枠からスプライトを作る方法は3つある
+    // 画面中央に配置
+    car.y = app.stage.width / 2 - app.stage.height / 2;
 
-  // （１）TextureCacheにアクセス
-  let bicycleTexture = TextureCache["pic_jitensya.png"];
-  bicycle = new Sprite(bicycleTexture);
-  app.stage.addChild(bicycle);
+    // (3) すべてのテクスチャアトラスに対して `id`というオプションのエイリアスを作成する
+    id = PIXI.loader.resources["images/atras.json"].textures;
 
-  
-/*
-  //2. Access the texture using through the loader's `resources`:
-  explorer = new Sprite(
-    resources["images/treasureHunter.json"].textures["explorer.png"]
-  );
-  explorer.x = 68;
-
-  //Center the explorer vertically
-  explorer.y = app.stage.height / 2 - explorer.height / 2;
-  app.stage.addChild(explorer);
-
-  //3. Create an optional alias called `id` for all the texture atlas 
-  //frame id textures.
-  id = PIXI.loader.resources["images/treasureHunter.json"].textures; 
-  
-  //Make the treasure box using the alias
-  treasure = new Sprite(id["treasure.png"]);
-  app.stage.addChild(treasure);
-
-  //Position the treasure next to the right edge of the canvas
-  treasure.x = app.stage.width - treasure.width - 48;
-  treasure.y = app.stage.height / 2 - treasure.height / 2;
-  app.stage.addChild(treasure);
-  */
+    // エイリアスを使ってairplaneを作成する
+    airplane = new Sprite(id["pic_airplane.png"]);
+    app.stage.addChild(airplane);
+    airplane.y = 100;
   }
-
 };
