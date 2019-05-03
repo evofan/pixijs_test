@@ -50,8 +50,8 @@ let setPixi = function() {
     animals.x = 50;
     animals.y = 50;
 
-  // コンテナにスプライトを追加すると、そのxとyの位置はグループの左上隅からの相対位置になる。
-  // それがスプライトのローカルポジションになる。
+    // コンテナにスプライトを追加すると、そのxとyの位置はグループの左上隅からの相対位置になる。
+    // それがスプライトのローカルポジションになる。
     cat.x = 20;
     console.log(cat.x); // 20
 
@@ -66,7 +66,7 @@ let setPixi = function() {
     // どのスプライトにもparentという名前のプロパティがあり、これによってスプライトの親が何であるかが分かる。
     // スプライトを直接ステージに追加すると、stageがスプライトの親になる。
     // 上の例では、猫の親はanimalsになる
-    
+
     // また、次のようなコードを書くことによって猫のグローバルな位置を得ることが出来る。
     console.log(cat.parent.toGlobal(cat.position)); // t {x: 70, y: 50}
 
@@ -91,10 +91,5 @@ let setPixi = function() {
 
     console.log(rabbit.toLocal(rabbit.position, dog).x); // 50
     console.log(rabbit.toLocal(rabbit.position, dog).y); // 60
-
-
-
-
-
   }
 };
