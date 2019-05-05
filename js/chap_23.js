@@ -53,9 +53,6 @@ let setPixi = function() {
   // 詳細については現在のParticleContainerドキュメントをチェック。
   //　http://pixijs.download/release/docs/PIXI.particles.ParticleContainer.html
 
-  //  new PIXI.particles.ParticleContainer () Deprecated : since 5.0.0
-  // -> PIXI.ParticleContainer
-
   // ParticleContainerを作成する場所には、サイズ、プロパティ、batchSize、autoResizeの4つのオプション引数を指定出来る。
   // let superFastSprites = new ParticleContainer(maxSize, properties, batchSize, autoResize);
 
@@ -100,3 +97,15 @@ let setPixi = function() {
     app.stage.addChild(container);
   }
 };
+
+//  new PIXI.particles.ParticleContainer () Deprecated : since 5.0.0
+// -> PIXI.ParticleContainer
+//
+// ParticleContainerクラスはスピードのためだけに作られたコンテナの本当に速いバージョンですので、
+// たくさんのスプライトやパーティクルが必要なときに使ってください。
+//
+// ParticleContainerのトレードオフは、最も高度な機能が機能しないことです。
+// ParticleContainerは基本的なオブジェクト変換（位置、スケール、回転）とtint（v4.5.6以降）のような高度な機能を実装しています。
+//
+// マスキング、子、フィルタなどの他のより高度な機能は、このバッチのスプライトでは動作しません。
+// 使い方はとても簡単です。
