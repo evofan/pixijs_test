@@ -29,7 +29,7 @@ let setPixi = function() {
   app.renderer.backgroundColor = 0x00000;
   document.body.appendChild(app.view);
 
-  loader.add("images/cat.png").load(setup);
+  loader.add("images/cat2.png").load(setup); // cat2.png...96x96px、矩形領域で判断するので枠付の画像でテスト。
   let cat;
   let state;
   let box;
@@ -70,11 +70,11 @@ let setPixi = function() {
     app.stage.addChild(box);
 
     // 猫
-    cat = new Sprite(resources["images/cat.png"].texture);
+    cat = new Sprite(resources["images/cat2.png"].texture);
     app.stage.addChild(cat);
     cat.position.set(16, 96);
-    cat.anchor.x = 0.5;
-    cat.anchor.y = 0.5;
+    cat.anchor.x = 0.0;
+    cat.anchor.y = 0.0;
     cat.vx = 0;
     cat.vy = 0;
 
@@ -162,16 +162,24 @@ let setPixi = function() {
     cat.x += cat.vx;
     cat.y += cat.vy;
 
+    // play()関数は1秒間に60回ゲームループによって呼び出されているので、
+    // このifステートメントは猫と箱の間の衝突を常にチェックしています。
+    // hitTestRectangle()がtrueの場合、テキストメッセージオブジェクトはテキストを使用して "Hit"を表示します。
+
     // 猫と箱の間の衝突チェック
     if (hitTestRectangle(cat, box)) {
       // もし衝突していたら、メッセージテキストを変更し、箱を赤色にする。
-      message.text = "hit!";
-      box.tint = 0xff3300;
+      message.text = "Hit!";
+      box.tint = 0xff3300; // ボックスのtintプロパティを16進数の赤の値に設定することで、ボックスの色が緑から赤に変わります。
     } else {
       // 衝突していなければ、メッセージと箱の色をリセットする。
-      message.text = "No collision...";
+      message.text = "No collision..."; // 衝突がない場合、メッセージとボックスは元の状態に維持されます。
       box.tint = 0xccff99;
     }
+
+    // このコードは非常に単純ですが、突然あなたは完全に生きているように見えるインタラクティブな世界を作成しました。
+    // まるで魔法のようです！
+    // そして、おそらく驚くべきことに、あなたは今、あなたがPixiでゲームを作り始めるのに必要なすべてのスキルを持っています！
   }
 
   // hitTestRectangle関数
